@@ -1,0 +1,130 @@
+<template>
+	<div id="app">
+		<transition name="fade"
+		            mode="out-in">
+			<router-view v-if="isRouterAlive"></router-view>
+		</transition>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'app',
+	components: {
+	},
+	data(){
+		return {
+			isRouterAlive:true
+		}
+	},
+
+	// provide / inject组合
+	// 作用：允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。
+	provide(){ 
+		//用于重新加载页面，不会重新加载整个页面
+		return{
+			reload:this.reload
+		}	
+	},
+	methods:{
+		reload(){
+			this.isRouterAlive = false;
+			this.$nextTick( ()=> {
+				this.isRouterAlive = true;
+			})
+		}
+	}
+}
+
+</script>
+
+<style lang="scss">
+body {
+	margin: 0px;
+	padding: 0px;
+	/*background: url(assets/bg1.jpg) center !important;
+		background-size: cover;*/
+	// background: #1F2D3D;
+	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+}
+
+#app {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	width: 100%;
+}
+
+.el-submenu [class^=fa] {
+	vertical-align: baseline;
+	margin-right: 10px;
+}
+
+.el-submenu__title{
+	color:#ccc!important;
+
+	i{
+		font-size: 16px;
+	}
+
+	&:hover {
+		background-color: transparent!important;
+		color: #fff!important;
+	}
+}
+.el-menu-item.is-active{
+	color: #fff!important;
+	background: #409EFF!important;
+}
+
+.el-submenu.is-active .el-submenu__title{
+	color: #fff!important;
+
+	i{
+		color: #fff;
+	}
+}
+.el-menu-item [class^=fa] {
+	vertical-align: baseline;
+	margin-right: 10px;
+}
+.el-submenu .el-menu{
+	background: transparent;
+
+	li{
+		color: #ccc;
+		&:hover{
+			color: #fff!important;
+			background: transparent;
+		}
+	}
+}
+.toolbar {
+	padding: 10px;
+	margin: 10px 0px;
+	.el-form-item {
+		margin-bottom: 10px;
+	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: all .2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+	opacity: 0;
+}
+*{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+.userTable{
+    width: 98%!important;
+    margin-left: 10px;
+}
+</style>
