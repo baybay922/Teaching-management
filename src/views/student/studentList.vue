@@ -98,7 +98,8 @@
 			
 			<el-table-column fixed="right" label="操作" width="100">
 				<template slot-scope="scope">
-					<el-button @click="checkStudentDetail(scope.row.id)" type="text" size="small">查看</el-button>
+					{{scope.row.id}}
+					<el-button @click="checkStudentDetail(11)" type="text" size="small">查看</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -113,7 +114,7 @@
 </template>
 
 <script>
-	import { studentList} from '../../api/api';
+	import { studentList, studentListConfigs } from '../../api/api';
 
 	export default {
 		data() {
@@ -168,10 +169,18 @@
 					this.users = res.data.pageList;
 					this.listLoading = false;
 				});
+			},
+			getConfigs(){
+				studentListConfigs().then((res) => {
+					this.total = res.data.pageInfo.totalPageCount;
+					this.users = res.data.pageList;
+					this.listLoading = false;
+				});
 			}
 		},
 		mounted() {
 			this.getUsers();
+			this.getConfigs();
 		}
 	}
 

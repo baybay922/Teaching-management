@@ -114,9 +114,11 @@
 </template>
 
 <script>
+import {studentDetails} from '../../api/api';
 export default {
     data(){
         return{
+            studentId:this.$route.query.id,
             activeName: 'first',
             form: {
                 name: '',
@@ -129,6 +131,19 @@ export default {
                 desc: ''
             }
         }
+    },
+    methods:{
+        getStudentDetails(){
+            let params = {
+                studentId:this.studentId
+            };
+            studentDetails(params).then((res) => {
+                console.log(res)
+            });
+        }
+    },
+    mounted(){
+        this.getStudentDetails()
     }
 }
 </script>

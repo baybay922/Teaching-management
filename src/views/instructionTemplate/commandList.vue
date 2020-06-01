@@ -4,19 +4,19 @@
 		<el-col :span="24" class="toolbar">
 			<el-form :inline="true">
 				<el-form-item>
-					<el-button type="primary" @click="checkCommand">查看指令库</el-button>
+					<el-button type="primary" @click="dialogFormVisible = true">新建指令</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
 
 		<!--列表-->
 		<el-table class="userTable" border :data="dataList" highlight-current-row v-loading="listLoading">
-			<el-table-column prop="bookType" label="适用类型"></el-table-column>
-            <el-table-column prop="bookLevel"  label="适用阶段"></el-table-column>
-            <el-table-column prop="bookName"  label="默认指令"></el-table-column>
+			<el-table-column prop="bookType" label="指令编号"></el-table-column>
+            <el-table-column prop="bookLevel"  label="指令详情"></el-table-column>
 			<el-table-column label="操作" width="100">
 				<template slot-scope="scope">
-					<el-button @click="dialogFormVisible = true" type="text" size="small">编辑</el-button>
+                    <el-button @click="checkCommand(scope.row.id)" type="text" size="small">删除</el-button>
+					<el-button @click="checkCommand(scope.row.id)" type="text" size="small">编辑</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -62,7 +62,7 @@
 					label: 'No1'
                 }],
                 dialogFormVisible: false,
-                dialogTitle:"测试指令",
+                dialogTitle:"新建指令",
                 form: {
                     name: '',
                     region: '',

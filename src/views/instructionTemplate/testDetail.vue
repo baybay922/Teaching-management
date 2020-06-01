@@ -6,10 +6,10 @@
                 <el-col :span="24" class="toolbar">
                     <el-form :inline="true">
                         <el-form-item>
-                            <el-button type="primary">编辑一级维度</el-button>
+                            <el-button type="primary" @click="firstVisible = true">编辑一级维度</el-button>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary">编辑二级维度</el-button>
+                            <el-button type="primary" @click="secondVisible = true">编辑二级维度</el-button>
                         </el-form-item>
                     </el-form>
                 </el-col>
@@ -44,6 +44,21 @@
             </el-tab-pane>
             
         </el-tabs>
+        <el-dialog title="编辑一级维度" class="dislog-content" center width="40%" :visible.sync="firstVisible">
+            
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="firstVisible = false">取 消</el-button>
+                <el-button type="primary" @click="firstVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="编辑二级维度" class="dislog-content" center width="40%" :visible.sync="secondVisible">
+            
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="secondVisible = false">取 消</el-button>
+                <el-button type="primary" @click="secondVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
     </section>
 </template>
 
@@ -58,6 +73,8 @@ export default {
             pageNo: 1,
             total: 0,
             listLoading: false,
+            firstVisible: false,
+            secondVisible: false
         }
     },
     methods:{

@@ -1,25 +1,26 @@
 <template>
 	<section>
 		<!--工具条-->
-		<el-col :span="24" class="toolbar">
-			<el-form :inline="true">
-				<el-form-item>
-					<el-button type="primary" @click="checkCommand">查看指令库</el-button>
-				</el-form-item>
-			</el-form>
-		</el-col>
+        <el-col :span="24" class="toolbar">
+            <el-form :inline="true">
+                <el-form-item>
+                    <el-button type="primary" @click="firstVisible = true">新增</el-button>
+                </el-form-item>
+            </el-form>
+        </el-col>
 
-		<!--列表-->
-		<el-table class="userTable" border :data="dataList" highlight-current-row v-loading="listLoading">
-			<el-table-column prop="bookType" label="适用类型"></el-table-column>
-            <el-table-column prop="bookLevel"  label="适用阶段"></el-table-column>
-            <el-table-column prop="bookName"  label="默认指令"></el-table-column>
-			<el-table-column label="操作" width="100">
-				<template slot-scope="scope">
-					<el-button @click="dialogFormVisible = true" type="text" size="small">编辑</el-button>
-				</template>
-			</el-table-column>
-		</el-table>
+        <!--列表-->
+        <el-table class="userTable" border :data="dataList" highlight-current-row v-loading="listLoading">
+            <el-table-column prop="bookType" label="名称"></el-table-column>
+            <el-table-column prop="bookLevel"  label="话术内容"></el-table-column>
+            <el-table-column prop="bookName"  label="操作人"></el-table-column>
+            <el-table-column prop="bookNo"  label="操作时间"></el-table-column>
+            <el-table-column label="操作" width="100">
+                <template slot-scope="scope">
+                    <el-button @click="checkDetail(scope.row.id)" type="text" size="small">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
 		
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">

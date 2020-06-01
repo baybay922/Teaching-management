@@ -103,9 +103,11 @@ body {
 }
 .toolbar {
 	padding: 10px;
-	margin: 10px 0px;
 	.el-form-item {
 		margin-bottom: 10px;
+	}
+	&:not(:first-child){
+		padding: 0 10px;
 	}
 }
 

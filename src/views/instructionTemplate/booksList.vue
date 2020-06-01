@@ -64,7 +64,7 @@
 			</el-pagination>
 		</el-col>
 
-        <el-dialog :title="bookTile" class="dislog-content" center width="40%" :visible.sync="dialogFormVisible">
+        <el-dialog :title="dialogTitle" class="dislog-content" center width="40%" :visible.sync="dialogFormVisible">
             <el-form :model="form">
 
                 <el-form-item label="书单类型" class="form-item" label-width="120px">
@@ -131,7 +131,7 @@
 					label: 'No1'
                 }],
                 dialogFormVisible: false,
-                bookTile:"新建书单",
+                dialogTitle:"新建书单",
                 form: {
                     name: '',
                     region: '',
